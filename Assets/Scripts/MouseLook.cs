@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
+    public LayerMask layer;
 
     public float mouseSensitivity = 100f;
     public Transform playerBody;
     float xRotation = 0f;
 
-
-    // Start is called before the first frame update
+    int i = 0;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
     void Update()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
@@ -29,5 +28,16 @@ public class MouseLook : MonoBehaviour
 
         playerBody.Rotate(Vector3.up * mouseX);
 
+
+
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity, layer))
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Debug.Log(i);
+                i++;
+            }
+        }
     }
 }

@@ -18,6 +18,8 @@ public class PanelManager : MonoBehaviour
         int repartition = colorRepartition.repartition;
         ColorImage[] categories = colorRepartition.colorScriptables;
 
+        panels = new GameObject[repartition];
+
         int index = 0;
         for (int i = 0; i < repartition; i++)
         {

@@ -6,6 +6,6 @@ public class Spin : MonoBehaviour
 {
     void Update()
     {
-        transform.Rotate(new Vector3(1, 1, 0));        
+        transform.Rotate(new Vector3(1, 1, 0));
     }
 }
