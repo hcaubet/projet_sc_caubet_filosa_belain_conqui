@@ -13,11 +13,12 @@ public class DynamicPhotoLayout : MonoBehaviour
     private Image[] images;
 
     private RectTransform panel;
-    public float resize = 400;
+    public float resize = 2;
 
     private void Start()
     {
         panel = GetComponent<RectTransform>();
+        Setup();
     }
 
     public void Setup()
@@ -34,7 +35,7 @@ public class DynamicPhotoLayout : MonoBehaviour
     {
             Image newImage = Instantiate(imagePrefab, transform);
             newImage.transform.parent = panel.gameObject.transform;
-            newImage.sprite = Sprite.Create(s, new Rect(0, 0, s.width, s.height), new Vector2(0.5f, 0.5f));
+            newImage.sprite = Sprite.Create(s, new Rect(0, 0, s.width, s.height), new Vector2(0,0));
         }
     }
 
@@ -50,10 +51,10 @@ public class DynamicPhotoLayout : MonoBehaviour
         for (int i = 0; i < images.Length; i++)
         {
             // resize chaque image
-            images[i].rectTransform.sizeDelta = new Vector2(images[i].sprite.rect.width / resize, images[i].sprite.rect.height / resize);
+            images[i].rectTransform.sizeDelta /= resize;
 
             // met dans un tableau 2D toutes les images et leurs lignes correspondantes
-            if (images[i].sprite.rect.width / resize < panel.rect.width / 2 && x + images[i].sprite.rect.width / resize < panel.rect.width)
+            if (images[i].rectTransform.rect.width < panel.rect.width / 2 && x + images[i].rectTransform.rect.width < panel.rect.width)
             {
                 x += images[i].rectTransform.rect.width;
                 indexOfImage++;
@@ -65,11 +66,8 @@ public class DynamicPhotoLayout : MonoBehaviour
                 indexOfImage = 0;
             }
 
-            if (sprites.Length == 1)
-            {
-                lineOfImages[0, 0] = i;
-            }
-            else
+            
+            if (indexOfLine != images.Length && indexOfImage != images.Length)
                 lineOfImages[indexOfLine, indexOfImage] = i;
         }
 
@@ -103,11 +101,15 @@ public class DynamicPhotoLayout : MonoBehaviour
             while (GetTotalWidth(lineOfImages, i) * z < panel.rect.width)
             {
                 z += 0.005f;
+                k++;
+                if (k > 1000000) break;
             }
-
+            k = 0;
             while (GetTotalWidth(lineOfImages, i) * z > panel.rect.width)
             {
                 z -= 0.005f;
+                k++;
+                if (k < 0) break;
             }
 
             x = 0;
@@ -125,7 +127,7 @@ public class DynamicPhotoLayout : MonoBehaviour
                 }
             }
 
-
+            
             // update y offset
             y -= GetMinHeight(lineOfImages, i) + 0.05f;
         }

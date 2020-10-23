@@ -9,6 +9,13 @@ public class PhotoDisplayer : MonoBehaviour
     public ColorImage colorImage;
     public GameObject cube;
 
+    private Vector2 mask;
+
+    private void Start()
+    {
+        mask = GetComponentInChildren<RectMask2D>().rectTransform.sizeDelta;
+    }
+
     public void CreatePanel()
     {
         if (GetComponentInChildren<Image>().name == "Color")
@@ -28,13 +35,11 @@ public class PhotoDisplayer : MonoBehaviour
     {
         if (cube.GetComponent<Renderer>().enabled == false)
         {
-            foreach (Canvas r in GetComponentsInChildren<Canvas>())
-                r.enabled = true;
+            GetComponentInChildren<RectMask2D>().rectTransform.sizeDelta = mask;
         }
         else
         {
-            foreach (Canvas r in GetComponentsInChildren<Canvas>())
-                r.enabled = false;
+            GetComponentInChildren<RectMask2D>().rectTransform.sizeDelta = new Vector2(0, 0);
         }
     }
 }
