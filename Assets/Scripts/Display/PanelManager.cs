@@ -18,9 +18,19 @@ public class PanelManager : MonoBehaviour
         int repartition = colorRepartition.repartition;
         ColorImage[] categories = colorRepartition.colorScriptables;
 
-        panels = new GameObject[repartition];
-
         int index = 0;
+
+        bubbles = GameObject.FindGameObjectsWithTag("Bubbles");
+        foreach (GameObject b in bubbles)
+        {
+            GameObject newBubble = Instantiate(prefabCube);
+            newBubble.GetComponent<MeshRenderer>().material = b.GetComponent<MeshRenderer>().material;
+            bubbles[index] = newBubble;
+            index++;
+        }
+
+        index = 0;
+        panels = new GameObject[repartition];
         for (int i = 0; i < repartition; i++)
         {
             if (categories[i].image.Length != 0 || categories[i].image.Length == 0)
@@ -31,19 +41,9 @@ public class PanelManager : MonoBehaviour
                 newPanel.GetComponent<PhotoDisplayer>().CreatePanel();
 
                 panels[index] = newPanel;
+                panels[index].GetComponent<PhotoDisplayer>().cube = bubbles[index];
                 index++;
             }
-        }
-
-        bubbles = GameObject.FindGameObjectsWithTag("Bubbles");
-        index = 0;
-
-        foreach (GameObject b in bubbles)
-        {
-            GameObject newBubble = Instantiate(prefabCube);
-            newBubble.GetComponent<MeshRenderer>().material = b.GetComponent<MeshRenderer>().material;
-            bubbles[index] = newBubble;
-            index++;
         }
 
         SetCoords();
@@ -59,7 +59,7 @@ public class PanelManager : MonoBehaviour
             float y = 100 * Mathf.Sin(angle * i);
 
 
-            panels[i].transform.position = new Vector3(x, 2, y);
+            panels[i].transform.position = new Vector3(x / 25, 2, y / 25);
             bubbles[i].transform.position = new Vector3(x / 25, 2, y / 25);
 
 

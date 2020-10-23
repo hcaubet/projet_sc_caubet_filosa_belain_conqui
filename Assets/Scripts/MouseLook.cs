@@ -35,8 +35,7 @@ public class MouseLook : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log(i);
-                i++;
+                hit.collider.gameObject.GetComponent<Renderer>().enabled = false;
             }
         }
     }

@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorRepartition: {fileID: 0}
-  prefabDisplayer: {fileID: 7455961978253237647, guid: 847e98c3083fd844ab75e9d6c26e16e0,
+  prefabDisplayer: {fileID: 8621279215510852504, guid: 847e98c3083fd844ab75e9d6c26e16e0,
     type: 3}
   prefabCube: {fileID: 8311892455579114826, guid: 081bce0aaeb3cc648a46f8539fb59df6,
     type: 3}

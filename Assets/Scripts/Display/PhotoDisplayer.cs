@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PhotoDisplayer : MonoBehaviour
 {
     public ColorImage colorImage;
-    public Image imagePrefab;
+    public GameObject cube;
 
     public void CreatePanel()
     {
@@ -16,11 +16,25 @@ public class PhotoDisplayer : MonoBehaviour
             GetComponentInChildren<Image>().color = colorImage.color;
         }
 
-        foreach (Texture2D image in colorImage.image)
+        GetComponentInChildren<DynamicPhotoLayout>().sprites = colorImage.image;
+        if (colorImage.image.Length != 0)
         {
-            Image newImage = Instantiate(imagePrefab, transform);
-            newImage.transform.parent = GetComponentInChildren<GridLayoutGroup>().transform;
-            newImage.sprite = Sprite.Create(image, new Rect(0, 0, image.width, image.height), new Vector2(0.5f, 0.5f));
+            GetComponentInChildren<DynamicPhotoLayout>().Setup();
+        }
+    }
+
+
+    public void Update()
+    {
+        if (cube.GetComponent<Renderer>().enabled == false)
+        {
+            foreach (Canvas r in GetComponentsInChildren<Canvas>())
+                r.enabled = true;
+        }
+        else
+        {
+            foreach (Canvas r in GetComponentsInChildren<Canvas>())
+                r.enabled = false;
         }
     }
 }
