@@ -33,6 +33,7 @@ public class PhotoDisplayer : MonoBehaviour
 
     public void Update()
     {
+        /*
         if (cube.GetComponent<Renderer>().enabled == false)
         {
             GetComponentInChildren<RectMask2D>().rectTransform.sizeDelta = mask;
@@ -41,5 +42,6 @@ public class PhotoDisplayer : MonoBehaviour
         {
             GetComponentInChildren<RectMask2D>().rectTransform.sizeDelta = new Vector2(0, 0);
         }
+        */
     }
 }

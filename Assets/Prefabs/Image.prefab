@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 54492515219825550}
   - component: {fileID: 54492515219825544}
   - component: {fileID: 54492515219825545}
-  m_Layer: 5
+  - component: {fileID: 6402196584028190970}
+  - component: {fileID: 80438707494398666}
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,3 +75,31 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6402196584028190970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54492515219825551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2bf2b6614f84a944b1b49259dbd327b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerPhoto:
+    serializedVersion: 2
+    m_Bits: 256
+--- !u!65 &80438707494398666
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54492515219825551}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 0.08033102}
+  m_Center: {x: 0.5, y: -0.5, z: 0}

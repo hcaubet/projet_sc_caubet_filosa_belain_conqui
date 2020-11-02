@@ -14,11 +14,16 @@ public class DynamicPhotoLayout : MonoBehaviour
 
     private RectTransform panel;
     public float resize = 2;
+    
+    public Scrollbar slider;
+    private float sliderOffset = 0;
+
+    private float x = 0;
+    private float y = 0;
 
     private void Start()
     {
         panel = GetComponent<RectTransform>();
-        Setup();
     }
 
     public void Setup()
@@ -27,6 +32,24 @@ public class DynamicPhotoLayout : MonoBehaviour
         GetImages();
         images = GetComponentsInChildren<Image>();
         PlaceImages();
+    }
+
+    private void Update()
+    {
+        if (slider.value != sliderOffset)
+        {
+            OnSliderValueChange(slider.value);
+            sliderOffset = slider.value;
+        }
+    }
+
+    public void OnSliderValueChange(float offset)
+    {
+        Debug.Log("test");
+        for (int i = 0; i < images.Length; i++)
+        {
+            images[i].rectTransform.localPosition = new Vector3(images[i].rectTransform.localPosition.x, images[i].rectTransform.localPosition.y - (offset - sliderOffset)*y, 0);
+        }
     }
 
     private void GetImages()
@@ -41,8 +64,8 @@ public class DynamicPhotoLayout : MonoBehaviour
 
     private void PlaceImages()
     {
-        float x = 0;
-        float y = 0;
+        x = 0;
+        y = 0;
 
         int indexOfLine = 0;
         int indexOfImage = 0;
@@ -120,6 +143,11 @@ public class DynamicPhotoLayout : MonoBehaviour
                 {
                     // resize again to fit panel
                     images[lineOfImages[i, j]].rectTransform.sizeDelta *= z;
+
+                    // set box collider the right size
+                    images[lineOfImages[i, j]].gameObject.GetComponent<BoxCollider>().size = new Vector3(images[lineOfImages[i, j]].rectTransform.rect.width, images[lineOfImages[i, j]].rectTransform.rect.height, 0.1f);
+                    images[lineOfImages[i, j]].gameObject.GetComponent<BoxCollider>().center = new Vector3(images[lineOfImages[i, j]].rectTransform.rect.width / 2, -images[lineOfImages[i, j]].rectTransform.rect.height / 2, 0f);
+
                     // place image again
                     images[lineOfImages[i, j]].rectTransform.localPosition = new Vector3(x, y, 0);
                     // get correct x value to offset images 

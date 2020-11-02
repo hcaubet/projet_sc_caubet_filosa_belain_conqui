@@ -45,13 +45,9 @@ public class SetColors : MonoBehaviour
 
         for (int i = 0; i < total; i++)
         {
-
             r += texColors[i].r;
-
             g += texColors[i].g;
-
             b += texColors[i].b;
-
         }
 
         return new Color32((byte)(r / total), (byte)(g / total), (byte)(b / total), 0);
