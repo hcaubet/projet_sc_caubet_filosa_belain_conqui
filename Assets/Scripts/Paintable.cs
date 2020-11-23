@@ -30,7 +30,7 @@ public class Paintable : MonoBehaviour
                 }
                 else
                 {
-                    GameObject brushPoint = Instantiate(brush, hit.point + Vector3.up * 0.1f - Vector3.up * hit.collider.gameObject.GetComponent<BoxCollider>().size.y*0.25f, Quaternion.identity);
+                    GameObject brushPoint = Instantiate(brush, hit.point + Vector3.up * 0.1f - Vector3.up * hit.collider.gameObject.GetComponent<BoxCollider>().size.y*0.3f, Quaternion.identity);
                     brushPoint.transform.localScale = Vector3.one * brushSize;
                     brushPoint.transform.parent = this.gameObject.transform;
                     brushPoint.transform.SetAsLastSibling();
@@ -51,7 +51,7 @@ public class Paintable : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            RenderStarter();
+            //RenderStarter();
         }
     }
 
@@ -80,7 +80,10 @@ public class Paintable : MonoBehaviour
         texture2D.ReadPixels(new Rect(0, 0, renderingCamera.targetTexture.width, renderingCamera.targetTexture.height), 0, 0);
         texture2D.Apply();
         painted = texture2D;
+    }
 
+    public void Launch()
+    {
         GameObject.FindObjectOfType<FindNearestColoredImage>().Compare(painted);
     }
 }

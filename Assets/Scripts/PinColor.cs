@@ -5,6 +5,7 @@ public class PinColor : MonoBehaviour
 {
     public GameObject pointer;
     public GameObject colorBand;
+    public GameObject scrollBar;
 
     private void Update()
     {
@@ -17,7 +18,7 @@ public class PinColor : MonoBehaviour
             {
                 pointer.GetComponentInChildren<Image>().color = GetPointedColor();
                 colorBand.GetComponentInChildren<Image>().color = GetPointedColor();
-
+                scrollBar.GetComponent<Image>().color = GetPointedColor();
             }
         }
     }
@@ -28,7 +29,7 @@ public class PinColor : MonoBehaviour
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.name ==  "Color disc")
         {
             pointer.transform.position = new Vector3(hit.point.x, hit.point.y, pointer.transform.position.z);
 
