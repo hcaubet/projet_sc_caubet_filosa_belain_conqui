@@ -45,7 +45,6 @@ public class DynamicPhotoLayout : MonoBehaviour
 
     public void OnSliderValueChange(float offset)
     {
-        Debug.Log("test");
         for (int i = 0; i < images.Length; i++)
         {
             images[i].rectTransform.localPosition = new Vector3(images[i].rectTransform.localPosition.x, images[i].rectTransform.localPosition.y - (offset - sliderOffset)*y, 0);
