@@ -4,8 +4,6 @@ using UnityEngine.UI;
 public class PinColor : MonoBehaviour
 {
     public GameObject pointer;
-    public GameObject colorBand;
-    public GameObject scrollBar;
 
     private void Update()
     {
@@ -17,8 +15,6 @@ public class PinColor : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 pointer.GetComponentInChildren<Image>().color = GetPointedColor();
-                colorBand.GetComponentInChildren<Image>().color = GetPointedColor();
-                scrollBar.GetComponent<Image>().color = GetPointedColor();
             }
         }
     }
@@ -44,24 +40,5 @@ public class PinColor : MonoBehaviour
         }
         else
             return new Color32(0, 0, 0, 0);
-    }
-
-    public void DisplayPictures()
-    {
-        Texture2D colorTexture = new Texture2D(1000,1000);
-
-        Color32 fillColor = pointer.GetComponentInChildren<Image>().color;
-
-        var fillColorArray = colorTexture.GetPixels();
-
-        for (var i = 0; i < fillColorArray.Length; ++i)
-        {
-            fillColorArray[i] = fillColor;
-        }
-
-        colorTexture.SetPixels(fillColorArray);
-        colorTexture.Apply();
-
-        GameObject.FindObjectOfType<FindNearestColoredImage>().Compare(colorTexture);
     }
 }

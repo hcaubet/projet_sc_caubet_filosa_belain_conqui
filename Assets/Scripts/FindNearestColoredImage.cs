@@ -38,7 +38,7 @@ public class FindNearestColoredImage : MonoBehaviour
 
         Array.Sort(difference, closestToImage);
 
-        GameObject.FindObjectOfType<DynamicPhotoLayout>().sprites = closestToImage;
+        //GameObject.FindObjectOfType<DynamicPhotoLayout>().sprites = closestToImage;
     }
 
     private float colorDifference(ColorArray a, ColorArray b)
