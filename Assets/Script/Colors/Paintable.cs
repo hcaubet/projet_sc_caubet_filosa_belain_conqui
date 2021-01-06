@@ -81,6 +81,6 @@ public class Paintable : MonoBehaviour
 
     private void Launch()
     {
-        GameObject.FindObjectOfType<FindNearestColoredImage>().Compare(painted);
+        GameObject.FindObjectOfType<FindNearestColoredImage>().CompareArrayMethod(painted);
     }
 }

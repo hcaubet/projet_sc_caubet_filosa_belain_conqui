@@ -5,9 +5,15 @@ public class FindNearestColoredImage : MonoBehaviour
 {
     public ImageToDisplay allImages;
 
-    public void Compare(Texture2D _compareThisImage)
+    public void ComparePointMethod(Texture2D comparethisImage)
     {
-        Texture2D compareThisImage = _compareThisImage;
+
+    }
+
+
+
+    public void CompareArrayMethod(Texture2D compareThisImage)
+    {
 
         Texture2D[] closestToImage = new Texture2D[allImages.image.Length];
         float[] difference = new float[allImages.image.Length];
