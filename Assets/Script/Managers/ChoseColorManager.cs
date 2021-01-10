@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ChoseColorManager : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class ChoseColorManager : MonoBehaviour
 
     public PinColor colorDisk;
 
-    public void StartCOmparing()
+    public void StartComparing()
     {
         CompareTexturesToColor();
     }
@@ -17,46 +18,24 @@ public class ChoseColorManager : MonoBehaviour
     public void CompareTexturesToColor()
     {
         // get chosen color to to compare
-        globalColorToCompare = colorDisk.GetPointedColor();
+        globalColorToCompare = colorDisk.pointer.GetComponentInChildren<Image>().color;
 
         // methods library
         ColorLibrary library = new ColorLibrary();
 
-        // array of difference and array to sort images 
+        // array of difference
         float[] differenceIntensity = new float[allImages.image.Length];
-        float[] newSortedArray = new float[allImages.image.Length]; ;
 
-        // compare all images according to RBG method
-        for (int i = 0; i < allImages.image.Length; i++)
-        {
-            differenceIntensity[i] = library.DifferenceValueRGB(allImages.colorOfImage[i], globalColorToCompare);
-            newSortedArray[i] = library.DifferenceValueRGB(allImages.colorOfImage[i], globalColorToCompare);
-        }
-
-        /*
+        
         // compare all images according to HSV method
         for (int i = 0; i < allImages.image.Length; i++)
         {
             differenceIntensity[i] = library.DifferenceValueHSV(allImages.colorOfImage[i], globalColorToCompare);
-            newSortedArray[i] = library.DifferenceValueHSV(allImages.colorOfImage[i], globalColorToCompare);
-        }*/
-
-        // sort images 
-        Texture2D[] sortedImages = allImages.image;
-        Array.Sort(newSortedArray);
-        
-        for (int i = 0; i < newSortedArray.Length; i++)
-        {
-            for (int j = 0; j < newSortedArray.Length; j++)
-            {
-                if (differenceIntensity[j] == newSortedArray[i])
-                {
-                    sortedImages[i] = allImages.image[j];
-                }
-            } 
+            Debug.Log(differenceIntensity[i]);
         }
-
-        allImages.image = sortedImages;
+        
+        // sort images 
+        Array.Sort(differenceIntensity, allImages.image);
     }
 
     public void GoBackToMainMenu()

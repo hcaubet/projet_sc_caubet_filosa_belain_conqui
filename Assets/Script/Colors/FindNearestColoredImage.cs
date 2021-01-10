@@ -5,13 +5,6 @@ public class FindNearestColoredImage : MonoBehaviour
 {
     public ImageToDisplay allImages;
 
-    public void ComparePointMethod(Texture2D comparethisImage)
-    {
-
-    }
-
-
-
     public void CompareArrayMethod(Texture2D compareThisImage)
     {
 

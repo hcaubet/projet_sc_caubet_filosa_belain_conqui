@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 648501023144586831}
   - component: {fileID: 648501023144586824}
   - component: {fileID: 648501023144586825}
+  - component: {fileID: 776809428887231958}
   m_Layer: 9
   m_Name: Brush
-  m_TagString: Untagged
+  m_TagString: brush
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +29,7 @@ RectTransform:
   m_GameObject: {fileID: 648501023144586826}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 14.754702, y: 14.754702, z: 14.754702}
   m_Children:
   - {fileID: 648501024671010866}
   m_Father: {fileID: 0}
@@ -36,8 +37,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.183}
-  m_SizeDelta: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.4449, y: 0.7512}
+  m_SizeDelta: {x: 0.1102, y: 0.1364}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &648501023144586831
 Canvas:
@@ -99,6 +100,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!65 &776809428887231958
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648501023144586826}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.65657276, y: 0.58596265, z: 0.03704803}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &648501024671010867
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,7 +124,6 @@ GameObject:
   - component: {fileID: 648501024671010866}
   - component: {fileID: 648501024671010864}
   - component: {fileID: 648501024671010865}
-  - component: {fileID: 7878588352439600251}
   m_Layer: 9
   m_Name: Image
   m_TagString: Untagged
@@ -127,15 +140,15 @@ RectTransform:
   m_GameObject: {fileID: 648501024671010867}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.05940431, y: 0.05940431, z: 0.05940431}
   m_Children: []
   m_Father: {fileID: 648501023144586830}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.078, y: -0.433}
-  m_SizeDelta: {x: 10, y: 10}
+  m_AnchoredPosition: {x: -0.002, y: -0.003}
+  m_SizeDelta: {x: 10.07, y: 10.07}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &648501024671010864
 CanvasRenderer:
@@ -158,12 +171,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0.05809641, a: 1}
+  m_Color: {r: 0, g: 0, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5c90977e7fe88964194db2aa050addf7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b043665ed02fe824093b513908a62541, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -173,16 +186,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!65 &7878588352439600251
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 648501024671010867}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.61, z: 0.114527225}
-  m_Center: {x: -0.08, y: 0.44, z: 0}

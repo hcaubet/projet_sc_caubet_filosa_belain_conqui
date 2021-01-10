@@ -8,6 +8,7 @@ public class Paintable : MonoBehaviour
 {
     public GameObject brush;
     public float brushSize = 1;
+    public bool canBrush = true;
     public Camera renderingCamera;
 
     public Texture2D painted;
@@ -19,35 +20,44 @@ public class Paintable : MonoBehaviour
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit))  
             {
-                if (hit.collider.gameObject.name != "Image")
+                if (canBrush)
                 {
-                    GameObject brushPoint = Instantiate(brush, hit.point + Vector3.up * 0.1f, Quaternion.identity);
-                    brushPoint.transform.localScale = Vector3.one * brushSize;
-                    brushPoint.transform.parent = this.gameObject.transform;
-                    brushPoint.transform.SetAsFirstSibling();
+
+                    if (hit.collider.gameObject.tag != "brush")
+                    {
+                        GameObject brushPoint = Instantiate(brush, hit.point + Vector3.up * 0.1f, Quaternion.identity);
+                        brushPoint.transform.localScale = Vector3.one * brushSize;
+                        brushPoint.transform.parent = this.gameObject.transform;
+                        brushPoint.transform.SetAsFirstSibling();
+                    }
+                    else
+                    {
+                        GameObject brushPoint = Instantiate(brush, hit.point + Vector3.up * 0.1f - Vector3.up * hit.collider.gameObject.GetComponent<BoxCollider>().size.y * 0.3f, Quaternion.identity);
+                        brushPoint.transform.localScale = Vector3.one * brushSize;
+                        brushPoint.transform.parent = this.gameObject.transform;
+                        brushPoint.transform.SetAsLastSibling();
+                    }
                 }
                 else
                 {
-                    GameObject brushPoint = Instantiate(brush, hit.point + Vector3.up * 0.1f - Vector3.up * hit.collider.gameObject.GetComponent<BoxCollider>().size.y*0.3f, Quaternion.identity);
-                    brushPoint.transform.localScale = Vector3.one * brushSize;
-                    brushPoint.transform.parent = this.gameObject.transform;
-                    brushPoint.transform.SetAsLastSibling();
+                    if (hit.collider.gameObject.tag == "brush")
+                    {
+                        Destroy(hit.collider.gameObject);
+                    }
                 }
             }    
         }
+    }
 
-        if (Input.GetMouseButton(1))
-        {
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.name == "Image")
-            {
-                Destroy(hit.collider.gameObject);
-            }
-        }
+    public void CanBrush()
+    {
+        canBrush = true;
+    }
+    public void CantBrush()
+    {
+        canBrush = false;
     }
 
     public void RenderStarter()

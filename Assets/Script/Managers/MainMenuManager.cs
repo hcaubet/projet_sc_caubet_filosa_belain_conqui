@@ -18,13 +18,10 @@ public class MainMenuManager: MonoBehaviour
         for (int i=0; i< allImages.image.Length; i++)
         {
             // RGB
-            allImages.colorOfImage[i] = library.AverageColorFromTextureRGB(allImages.image[i]);
-            
-            /*
+            //allImages.colorOfImage[i] = library.AverageColorFromTextureRGB(allImages.image[i]);
+
             // HSV
-            float[] hsvArray = library.AverageColorFromTextureHSV(allImages.image[i]);
-            allImages.colorOfImage[i] = Color.HSVToRGB(hsvArray[0], hsvArray[1], hsvArray[2]);
-            */
+            allImages.colorOfImage[i] = library.AverageColorFromTextureHSV(allImages.image[i]);
         }
     }
 
