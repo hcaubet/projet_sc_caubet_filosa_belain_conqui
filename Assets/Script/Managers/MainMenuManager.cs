@@ -8,21 +8,6 @@ public class MainMenuManager: MonoBehaviour
     private void Start()
     {
         allImages.colorOfImage = new Color32[allImages.image.Length];
-        GetAllImagesAverageColor();
-    }
-
-    private void GetAllImagesAverageColor()
-    {
-        ColorLibrary library = new ColorLibrary();
-
-        for (int i=0; i< allImages.image.Length; i++)
-        {
-            // RGB
-            //allImages.colorOfImage[i] = library.AverageColorFromTextureRGB(allImages.image[i]);
-
-            // HSV
-            allImages.colorOfImage[i] = library.AverageColorFromTextureHSV(allImages.image[i]);
-        }
     }
 
     public void GoToChoseColor()

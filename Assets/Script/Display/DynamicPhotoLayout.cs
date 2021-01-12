@@ -14,10 +14,10 @@ public class DynamicPhotoLayout : MonoBehaviour
     private RectTransform panel;
     public float resize = 2;
     
-    private float sliderOffset = 0;
+    public float sliderOffset = 69;
 
-    private float x = 0;
-    private float y = 0;
+    private float x;
+    private float y;
 
     private void Start()
     {
@@ -35,12 +35,30 @@ public class DynamicPhotoLayout : MonoBehaviour
 
     private void GetImages()
     {
+        if (x != 0)
+        {
+            foreach (Image i in images)
+            {
+                i.gameObject.SetActive(false);
+                GameObject.Destroy(i);
+            }
+        }
+
         foreach (Texture2D s in allImages.image)
-    {
+        {
             Image newImage = Instantiate(imagePrefab, transform);
             newImage.transform.parent = panel.gameObject.transform;
             newImage.sprite = Sprite.Create(s, new Rect(0, 0, s.width, s.height), new Vector2(0,0));
         }
+    }
+
+    private void Update()
+    {
+        panel.GetComponent<RectTransform>().localPosition = new Vector2(0f, sliderOffset);
+
+        sliderOffset += Input.mouseScrollDelta.y;
+
+        if (sliderOffset < 0) sliderOffset = 0;
     }
 
     private void PlaceImages()

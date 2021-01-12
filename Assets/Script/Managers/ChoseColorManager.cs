@@ -9,9 +9,11 @@ public class ChoseColorManager : MonoBehaviour
     public Color32 globalColorToCompare;
 
     public PinColor colorDisk;
+    private HistogramGenerator histogramGenerator;
 
     public void StartComparing()
     {
+        histogramGenerator = GameObject.FindObjectOfType<HistogramGenerator>();
         CompareTexturesToColor();
     }
 
@@ -25,16 +27,23 @@ public class ChoseColorManager : MonoBehaviour
 
         // array of difference
         float[] differenceIntensity = new float[allImages.image.Length];
-
         
         // compare all images according to HSV method
         for (int i = 0; i < allImages.image.Length; i++)
         {
-            differenceIntensity[i] = library.DifferenceValueHSV(allImages.colorOfImage[i], globalColorToCompare);
-            Debug.Log(differenceIntensity[i]);
+            float totalDifference = 0;
+            Color32[] histogramOfTexture = histogramGenerator.CreateHistogram(allImages.image[i]);
+
+            for (int c = 0; c < histogramOfTexture.Length; c++)
+            {
+                totalDifference += (histogramOfTexture.Length - c) * 
+                    library.DifferenceValueLAB(globalColorToCompare, histogramOfTexture[c]);
+            }
+
+            totalDifference /= histogramOfTexture.Length * (histogramOfTexture.Length + 1) / 2;
+            differenceIntensity[i] = totalDifference;
         }
-        
-        // sort images 
+
         Array.Sort(differenceIntensity, allImages.image);
     }
 

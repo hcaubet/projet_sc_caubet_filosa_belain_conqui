@@ -1,2 +1,5 @@
 Base path: 'C:/Users/hippo/Documents/Unity/2019.3.2f1/Editor/Data', plugins path 'C:/Users/hippo/Documents/Unity/2019.3.2f1/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
+Cmd: compileComputeKernel
+  error: 2 plat 4 at histStruct.compute(26): interlocked targets must be groupshared or UAV elements
+  api=4 insize=725 outsize=0 ok=0
